@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use AWS;
 
 Route::get('/', function () {
-   return true;
+    return view('welcome');
 });
