@@ -5279,6 +5279,15 @@ __webpack_require__.r(__webpack_exports__);
         this.item = [this.msg];
         this.items.push(this.item);
       }
+    },
+    entersendmessage: function entersendmessage(e) {
+      if (e.keyCode === 13) {
+        if (this.msg.length > 0) {
+          this.item = [this.msg];
+          this.items.push(this.item);
+          this.msg = '';
+        }
+      }
     }
   }
 });
@@ -5314,7 +5323,7 @@ var render = function render() {
       staticClass: "clearfix"
     }, [_c("div", {
       staticClass: "bg-teal-900 float-right w-3/4 mx-4 my-2 p-2 rounded-lg clearfix text-white"
-    }, [_vm._v("\n          " + _vm._s(_vm.msg) + "\n        ")])]);
+    }, [_vm._v("\n          " + _vm._s(item[0]) + "\n        ")])]);
   }), _vm._v(" "), _vm._m(1)], 2)]), _vm._v(" "), _c("div", {
     staticClass: "fixed w-full flex justify-between bg-slate-800",
     staticStyle: {
@@ -5327,7 +5336,7 @@ var render = function render() {
       value: _vm.msg,
       expression: "msg"
     }],
-    staticClass: "flex-grow m-2 p-4 mr-1 placeholder-white text-white rounded-md border border-slate-500 bg-slate-500 resize-none",
+    staticClass: "flex-grow m-2 p-4 placeholder-white text-white rounded-md border border-slate-500 bg-slate-500 resize-none",
     staticStyle: {
       outline: "none"
     },
@@ -5340,36 +5349,16 @@ var render = function render() {
       value: _vm.msg
     },
     on: {
+      keyup: function keyup($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
+        return _vm.entersendmessage.apply(null, arguments);
+      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.msg = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "m-2",
-    staticStyle: {
-      outline: "none"
-    },
-    on: {
-      click: _vm.sendmessage
-    }
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa text-slate-300 fa-paper-plane fa-w-16 w-12 h-12 py-2 mr-2",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "paper-plane",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 512 512"
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"
-    }
-  })])])])]);
+  })])]);
 };
 
 var staticRenderFns = [function () {
